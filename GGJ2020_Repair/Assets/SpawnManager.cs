@@ -22,13 +22,17 @@ public class SpawnManager : MonoBehaviour
     public float enemiesSpawned; //Spawned This Wave
 
     float timer;
+    float newWaveTimer;
+
+    public float timeUNtilNewWave;
 
 
     public void Update()
     {
         timer += Time.deltaTime;
+        newWaveTimer += Time.deltaTime;
 
-        if (currentEnemies <= 3 && timer >= 3f)
+        if (currentEnemies <= 3 && timer >= 3f || newWaveTimer >= timeUNtilNewWave)
         {
             NewWave();
         }
@@ -37,6 +41,7 @@ public class SpawnManager : MonoBehaviour
     public void NewWave()
     {
         timer = 0f;
+        newWaveTimer = 0f;
         if (currentWave > 1)
         {
             waveSize.x += waveIncrement;

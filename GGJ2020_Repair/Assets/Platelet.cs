@@ -137,6 +137,7 @@ public class Platelet : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = deadSprite;
         GetComponent<CircleCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().Sleep();
+        GetComponent<AudioSource>().Play();
         Destroy(gameObject, 9f);
     }
 }

@@ -74,12 +74,6 @@ public class EnemyMovement : MonoBehaviour
 
     void GetNewTarget()
     {
-        GameObject newTarget = GameObject.FindGameObjectWithTag("EnemyTarget");
-        targetPosition = newTarget.transform;
-
-        if (targetPosition == null)
-        {
-            trackingPlayer = true;
-        }
+        trackingPlayer = true;
     }
 }

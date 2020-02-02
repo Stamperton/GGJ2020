@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: NormalWeapon
   m_EditorClassIdentifier: 
   weaponName: Normal
-  fireDelay: 0.25
+  fireDelay: 0.3
   bulletPrefab: {fileID: 1167414159041224290, guid: 829016b9926cb3b4bba12a7eeea2286a,
     type: 3}

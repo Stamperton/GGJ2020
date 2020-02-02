@@ -11,6 +11,7 @@ public class Wound : MonoBehaviour
     public Sprite halfHealed;
     public Sprite healed;
 
+    GameObject weaponPickup;
     SpriteRenderer spriteRenderer;
 
     public CircleCollider2D[] notHealedColliders;
@@ -20,6 +21,7 @@ public class Wound : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         SpawnManager.instance.AddToList(this);
+        weaponPickup = transform.GetChild(0).gameObject;
     }
 
     public void Heal(float heal)
@@ -45,11 +47,13 @@ public class Wound : MonoBehaviour
             isHealed = true;
             gameObject.tag = "Healed";
             spriteRenderer.sprite = healed;
+            SpawnManager.instance.RemoveFromList(this);
+
+            weaponPickup.SetActive(true);
 
             for (int i = 0; i < halfHealedColliders.Length; i++)
             {
                 halfHealedColliders[i].enabled = false;
-                SpawnManager.instance.RemoveFromList(this);
             }
         }
     }

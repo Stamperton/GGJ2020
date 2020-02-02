@@ -8,8 +8,6 @@ public class Damagable : MonoBehaviour
     public Sprite deadSprite;
 
     bool isDead;
-
-
     //Variables
     Animator anim;
     SpriteRenderer spriteRenderer;
@@ -32,6 +30,7 @@ public class Damagable : MonoBehaviour
 
     public void Die()
     {
+        GetComponent<AudioSource>().Play();
         PlayerHealth.instance.kills++;
         PlayerHealth.instance.UpdateUI();
         SpawnManager.instance.currentEnemies--;

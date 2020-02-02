@@ -7,8 +7,6 @@ public class Shooting : MonoBehaviour
     public Transform firepoint;
     public GameObject bulletPrefab;
 
-    public float bulletForce = 20f;
-
     public WeaponSO defaultWeapon;
     public WeaponSO currentWeapon;
 
@@ -19,6 +17,7 @@ public class Shooting : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         currentWeapon = defaultWeapon;
     }
 
@@ -38,8 +37,8 @@ public class Shooting : MonoBehaviour
         if (fireTimer >= currentWeapon.fireDelay)
         {
             GameObject _bullet = Instantiate(currentWeapon.bulletPrefab, firepoint.position, firepoint.rotation);
-            _bullet.GetComponent<Rigidbody2D>().AddForce(firepoint.up * bulletForce, ForceMode2D.Impulse);
             fireTimer = 0f;
+            audioSource.Play();
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject largeEnemyPrefab;
 
     public Vector2 spawnDelay;
     float spawn;
@@ -12,12 +13,13 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        NewSpawnTimer();   
+        NewSpawnTimer();
     }
 
     public void Update()
     {
         timer += Time.deltaTime;
+
 
         if (timer >= spawn)
         {
@@ -39,7 +41,18 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
         SpawnManager.instance.enemiesSpawned++;
-        GameObject _enemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
-        _enemy.transform.SetParent(this.transform);
+        int random = Random.Range(0, 10);
+        if (random == 2)
+        {
+            GameObject _enemy = Instantiate(largeEnemyPrefab, transform.position, transform.rotation);
+
+            _enemy.transform.SetParent(this.transform);
+        }
+        else
+        {
+            GameObject _enemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
+
+            _enemy.transform.SetParent(this.transform);
+        }
     }
 }
